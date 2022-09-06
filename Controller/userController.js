@@ -50,10 +50,13 @@ const saveUser = (req, res) => {
     }
 }
 
-//user update function here ................................
-
+//user update randomly function here ................................
+//@desc update user from UI 
+//@route  /user/save
+//method  private
 const userDataUpdate = (req, res)=>{
     const id = Math.floor(Math.random() * 4) + 1;
+ 
     const data = req.body;
     const filter = user.find(use => use.id === Number(id));
     filter.name=data.id || filter.id;
@@ -64,7 +67,36 @@ const userDataUpdate = (req, res)=>{
     filter.photoUrl=data.photoUrl || filter.photoUrl;
     res.send(filter)
 }
+//user update function here ................................
+//@desc update user from UI 
+//@route  /user/save
+//method  private
+const bulkPatchData = (req, res) => {
+    const {id} = req.params
+    const data = req.body;
+    const filter = user.find(use => use.id === Number(id));
+    filter.name=data.id || filter.id;
+    filter.gender=data.gender || filter.gender;
+    filter.name=data.name || filter.name;
+    filter.contact=data.contact || filter.contact;
+    filter.address=data.address || filter.address;
+    filter.photoUrl=data.photoUrl || filter.photoUrl;
+    res.send(filter)
 
+}
 
+//user delete function here ................................
+//@desc update user from UI 
+//@route  /user/save
+//method  private
+const deleteData = (req, res) => {
+    const { id } = req.params;
+    if (Number(id)) {
+        result = user.filter(use => use.id !== Number(id));
+        res.send(result);
+    }else{
+        res.send({ message: "Id not found" })
+    }
+}
 
-module.exports = { getAllUser, getRandomUser, saveUser, userDataUpdate}
+module.exports = { getAllUser, getRandomUser, saveUser, userDataUpdate, bulkPatchData, deleteData}
