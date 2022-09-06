@@ -9,6 +9,6 @@ router.get('/random', getRandomUser)
 router.post('/save', saveUser)
 router.patch('/update', userDataUpdate)
 router.patch('/update/:id', bulkPatchData)
-router.delete('/update/:id', deleteData)
+router.delete('/delete/:id', deleteData)
 
 module.exports = router
