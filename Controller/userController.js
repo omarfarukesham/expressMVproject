@@ -26,7 +26,7 @@ const getAllUser = (req, res) => {
     } else {
         res.send(user)
     }
-    // console.log(query)
+    console.log(query)
 }
 
 

@@ -9,4 +9,10 @@ app.use(express.urlencoded())
 
 app.use('/user', require('./Router/userRouter'))
 
+
+app.get('/', (req, res) => {
+    res.send('Welcome to ExpressJS Project server ........... ')
+})
+
+
 app.listen(PORT, ()=>{console.log(`Assignment server is running ${PORT}`);})
