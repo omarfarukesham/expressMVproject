@@ -1,12 +1,14 @@
 let user = require('../fakeData.json')
 const fs = require('fs')
 var data = fs.readFileSync('fakeData.json');
+
+
 //@desc userData Randomly calling from fake data 
 //@route  get/user/random
 //method  private
 const getRandomUser = (req, res) => {
     const id = Math.floor(Math.random() * 15) + 1;
-    console.log(id)
+    // console.log(id)
     const filter = user.find(us => us.id == id);
     if (filter) {
         res.send(filter)
@@ -24,7 +26,7 @@ const getAllUser = (req, res) => {
     } else {
         res.send(user)
     }
-    console.log(query)
+    // console.log(query)
 }
 
 
@@ -38,9 +40,9 @@ const saveUser = (req, res) => {
     if (!filter) {
         if (id && gender && name && contact && address && photoUrl) {
             var myObject = JSON.parse(data);
-           let result =  myObject.push(req.body)
-           console.log(result);
-            
+            let result = myObject.push(req.body)
+            console.log(result);
+
             res.send({ message: "Data Inserted" })
         } else {
             res.send({ message: "value Messing" })
@@ -54,17 +56,17 @@ const saveUser = (req, res) => {
 //@desc update user from UI 
 //@route  /user/save
 //method  private
-const userDataUpdate = (req, res)=>{
+const userDataUpdate = (req, res) => {
     const id = Math.floor(Math.random() * 4) + 1;
- 
+
     const data = req.body;
     const filter = user.find(use => use.id === Number(id));
-    filter.name=data.id || filter.id;
-    filter.gender=data.gender || filter.gender;
-    filter.name=data.name || filter.name;
-    filter.contact=data.contact || filter.contact;
-    filter.address=data.address || filter.address;
-    filter.photoUrl=data.photoUrl || filter.photoUrl;
+    filter.name = data.id || filter.id;
+    filter.gender = data.gender || filter.gender;
+    filter.name = data.name || filter.name;
+    filter.contact = data.contact || filter.contact;
+    filter.address = data.address || filter.address;
+    filter.photoUrl = data.photoUrl || filter.photoUrl;
     res.send(filter)
 }
 //user update function here ................................
@@ -72,15 +74,15 @@ const userDataUpdate = (req, res)=>{
 //@route  /user/save
 //method  private
 const bulkPatchData = (req, res) => {
-    const {id} = req.params
+    const { id } = req.params
     const data = req.body;
     const filter = user.find(use => use.id === Number(id));
-    filter.name=data.id || filter.id;
-    filter.gender=data.gender || filter.gender;
-    filter.name=data.name || filter.name;
-    filter.contact=data.contact || filter.contact;
-    filter.address=data.address || filter.address;
-    filter.photoUrl=data.photoUrl || filter.photoUrl;
+    filter.name = data.id || filter.id;
+    filter.gender = data.gender || filter.gender;
+    filter.name = data.name || filter.name;
+    filter.contact = data.contact || filter.contact;
+    filter.address = data.address || filter.address;
+    filter.photoUrl = data.photoUrl || filter.photoUrl;
     res.send(filter)
 
 }
@@ -94,9 +96,9 @@ const deleteData = (req, res) => {
     if (Number(id)) {
         result = user.filter(use => use.id !== Number(id));
         res.send(result);
-    }else{
+    } else {
         res.send({ message: "Id not found" })
     }
 }
 
-module.exports = { getAllUser, getRandomUser, saveUser, userDataUpdate, bulkPatchData, deleteData}
+module.exports = { getAllUser, getRandomUser, saveUser, userDataUpdate, bulkPatchData, deleteData }
