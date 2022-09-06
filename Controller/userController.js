@@ -50,8 +50,21 @@ const saveUser = (req, res) => {
     }
 }
 
+//user update function here ................................
+
+const userDataUpdate = (req, res)=>{
+    const id = Math.floor(Math.random() * 4) + 1;
+    const data = req.body;
+    const filter = user.find(use => use.id === Number(id));
+    filter.name=data.id || filter.id;
+    filter.gender=data.gender || filter.gender;
+    filter.name=data.name || filter.name;
+    filter.contact=data.contact || filter.contact;
+    filter.address=data.address || filter.address;
+    filter.photoUrl=data.photoUrl || filter.photoUrl;
+    res.send(filter)
+}
 
 
 
-
-module.exports = { getAllUser, getRandomUser, saveUser }
+module.exports = { getAllUser, getRandomUser, saveUser, userDataUpdate}
